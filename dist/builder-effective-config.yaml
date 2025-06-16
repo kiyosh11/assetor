@@ -1,0 +1,42 @@
+directories:
+  output: dist
+  buildResources: build
+appId: inc.shapes.assetor
+productName: Assetor
+copyright: Copyright © 2023 Shapes, Inc
+files:
+  - filter:
+      - '**/*'
+      - '!**/node_modules/*/{CHANGELOG.md,README.md,README,readme.md,readme}'
+      - '!**/node_modules/*/{test,__tests__,tests,powered-test,example,examples}'
+      - '!**/node_modules/*.d.ts'
+      - '!**/*.{iml,o,hprof,orig,pyc,pyo,rbc,swp,csproj,sln,xproj}'
+      - '!**/._*'
+      - '!**/{.DS_Store,.git,.hg,.svn,CVS,RCS,SCCS,.gitignore,.gitattributes}'
+      - '!**/{__pycache__,thumbs.db,.flowconfig,.idea,.vs,.nyc_output}'
+      - '!**/{appveyor.yml,.travis.yml,circle.yml}'
+      - '!**/{npm-debug.log,yarn.lock,.yarn-integrity,.yarn-metadata.json}'
+asar: true
+asarUnpack:
+  - '**/node_modules/electron-store/**'
+win:
+  target: nsis
+  icon: build/icon.ico
+  publisherName: Shapes, Inc
+  verifyUpdateCodeSignature: false
+  rfc3161TimeStampServer: http://timestamp.digicert.com
+nsis:
+  oneClick: false
+  perMachine: true
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: Assetor
+  artifactName: Assetor_Setup_${version}.exe
+portable:
+  artifactName: Assetor_Portable_${version}.exe
+publish:
+  provider: github
+  owner: shapes-inc
+  repo: assetor
+electronVersion: 25.9.8
